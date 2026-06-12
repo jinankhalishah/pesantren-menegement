@@ -91,6 +91,56 @@
             </a>
         </li>
 
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-3 text-white" data-bs-toggle="collapse"
+                href="#keuanganMenu" role="button">
+                <i class="bi bi-wallet2 me-3 icon"></i>
+                <span class="menu-text flex-grow-1">
+                    Keuangan
+                </span>
+                <i class="bi bi-chevron-down"></i>
+            </a>
+
+            <div class="collapse {{ request()->is('keuangan*') || request()->is('jenis-pembayaran*') ? 'show' : '' }}"
+                id="keuanganMenu">
+                <ul class="nav flex-column ms-4 mt-2">
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('keuangan.dashboard') }}" class="nav-link text-white"> --}}
+                            <a href="#" class="nav-link text-white"></a>
+                            Dashboard Keuangan
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jenis-pembayaran.index') }}" class="nav-link text-white">
+                            Jenis Pembayaran
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('transaksi.index') }}" class="nav-link text-white"> --}}
+                            <a href="#" class="nav-link text-white"></a>
+                            Transaksi Pembayaran
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('pengeluaran.index') }}" class="nav-link text-white"> --}}
+                            <a href="#" class="nav-link text-white"></a>
+                            Pengeluaran
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('keuangan.rekap') }}" class="nav-link text-white"> --}}
+                            <a href="#" class="nav-link text-white"></a>
+                            Rekap Keuangan
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </li>
+
         <li>
             <a href="/logout"
                 class="nav-link d-flex align-items-center px-3 py-2 rounded-3

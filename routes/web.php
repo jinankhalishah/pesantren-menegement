@@ -11,6 +11,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\JenisPembayaranController;
 use App\Models\Absensi;
 use Symfony\Component\Routing\Loader\Configurator\Routes;
 
@@ -64,3 +65,9 @@ Route::get(
     '/rekap-absensi/pdf',
     [AbsensiController::class, 'rekapPdf']
 )->name('absensi.rekap.pdf');
+
+
+Route::resource(
+    'jenis-pembayaran',
+    JenisPembayaranController::class
+);

@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('santri', function (Blueprint $table) {
-
+        Schema::create('jenis_pembayaran', function (Blueprint $table) {
             $table->id();
-
-            $table->string('nis')->unique();
-
-            $table->string('name');
+            $table->string('nama_pembayaran');
+            $table->decimal('nominal', 15, 0);
 
             $table->enum(
-                'gender',
+                'kategori',
                 [
-                    'Laki-laki',
-                    'Perempuan'
+                    'Bulanan',
+                    'Tahunan',
+                    'Sekali Bayar',
                 ]
             );
 
@@ -31,7 +29,6 @@ return new class extends Migration
                 ->default(true);
 
             $table->timestamps();
-
         });
     }
 
@@ -40,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('santri');
+        Schema::dropIfExists('jenis_pembayarans');
     }
 };

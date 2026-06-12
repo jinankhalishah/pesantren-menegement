@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Absensi;
 use App\Models\Santri;
 use App\Models\Kelas;
@@ -90,25 +91,25 @@ class AbsensiController extends Controller
     {
         $kelas = Kelas::findOrFail($request->kelas_id);
 
-    $tanggal = $request->tanggal;
+        $tanggal = $request->tanggal;
 
-    $absensi = Absensi::with('santri')
-        ->whereDate('tanggal', $tanggal)
-        ->whereHas('santri', function ($query) use ($request) {
-            $query->where('kelas_id', $request->kelas_id);
-        })
-        ->get();
+        $absensi = Absensi::with('santri')
+            ->whereDate('tanggal', $tanggal)
+            ->whereHas('santri', function ($query) use ($request) {
+                $query->where('kelas_id', $request->kelas_id);
+            })
+            ->get();
 
-    $pdf = Pdf::loadView(
-        'pdf.absensi',
-        compact(
-            'absensi',
-            'kelas',
-            'tanggal'
-        )
-    );
+        $pdf = Pdf::loadView(
+            'pdf.absensi',
+            compact(
+                'absensi',
+                'kelas',
+                'tanggal'
+            )
+        );
 
-    return $pdf->stream('absensi-harian.pdf');
+        return $pdf->stream('absensi-harian.pdf');
     }
 
     public function rekap(Request $request)
