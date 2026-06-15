@@ -85,12 +85,11 @@
         <li>
             <a href="{{ route('absensi.rekap') }}"
                 class="nav-link d-flex align-items-center px-3 py-2 rounded-3
-               {{ request()->is('rekapabsensi*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
+                {{ request()->routeIs('absensi.rekap') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
                 <i class="bi bi-bar-chart me-3 icon"></i>
                 <span class="menu-text">Rekap Absensi</span>
             </a>
         </li>
-
 
         <li class="nav-item">
             <a class="nav-link d-flex align-items-center px-3 py-2 rounded-3 text-white" data-bs-toggle="collapse"
@@ -107,8 +106,8 @@
                 <ul class="nav flex-column ms-4 mt-2">
                     <li class="nav-item">
                         {{-- <a href="{{ route('keuangan.dashboard') }}" class="nav-link text-white"> --}}
-                            <a href="#" class="nav-link text-white"></a>
-                            Dashboard Keuangan
+                        <a href="#" class="nav-link text-white"></a>
+                        Dashboard Keuangan
                         </a>
                     </li>
                     <li class="nav-item">
@@ -117,21 +116,20 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        {{-- <a href="{{ route('transaksi.index') }}" class="nav-link text-white"> --}}
-                            <a href="#" class="nav-link text-white"></a>
-                            Transaksi Pembayaran
+                        <a href="{{ route('transaksi-pembayaran.index') }}" class="nav-link text-white">
+                        Transaksi Pembayaran
                         </a>
                     </li>
                     <li class="nav-item">
                         {{-- <a href="{{ route('pengeluaran.index') }}" class="nav-link text-white"> --}}
-                            <a href="#" class="nav-link text-white"></a>
-                            Pengeluaran
+                        <a href="#" class="nav-link text-white"></a>
+                        Pengeluaran
                         </a>
                     </li>
                     <li class="nav-item">
                         {{-- <a href="{{ route('keuangan.rekap') }}" class="nav-link text-white"> --}}
-                            <a href="#" class="nav-link text-white"></a>
-                            Rekap Keuangan
+                        <a href="#" class="nav-link text-white"></a>
+                        Rekap Keuangan
                         </a>
                     </li>
 

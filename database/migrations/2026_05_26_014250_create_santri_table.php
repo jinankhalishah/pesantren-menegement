@@ -27,11 +27,15 @@ return new class extends Migration
                 ]
             );
 
-            $table->boolean('status')
-                ->default(true);
+            $table->enum(
+                'status',
+                [
+                    'Aktif',
+                    'Nonaktif'
+                ]
+            )->default('Aktif');
 
             $table->timestamps();
-
         });
     }
 

@@ -15,9 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('nip')->unique();
             $table->string('name');
-            $table->string('subject');
+
+            $table->foreignId('mapel_id')
+                ->constrained('mapel')
+                ->cascadeOnDelete();
+
             $table->string('phone');
             $table->string('status');
+            
             $table->timestamps();
         });
     }

@@ -28,5 +28,9 @@ class Santri extends Model
     {
         return $this->belongsTo(Santri::class);
     }
+    public function pembayaran()
+{
+    return $this->hasMany(Pembayaran::class);
+}
 
 }

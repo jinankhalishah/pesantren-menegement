@@ -14,4 +14,9 @@ class JenisPembayaran extends Model
         'kategori',
         'status'
     ];
+
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
 }
