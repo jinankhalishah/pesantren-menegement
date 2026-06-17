@@ -24,10 +24,10 @@ class Santri extends Model
     {
         return $this->hasMany(Absensi::class);
     }
-    public function santri()
-    {
-        return $this->belongsTo(Santri::class);
-    }
+    // public function santri()
+    // {
+    //     return $this->belongsTo(Santri::class);
+    // }
     public function pembayaran()
 {
     return $this->hasMany(Pembayaran::class);

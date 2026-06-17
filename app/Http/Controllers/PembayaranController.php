@@ -110,7 +110,7 @@ class PembayaranController extends Controller
     public function kwitansi($id)
     {
         $pembayaran = Pembayaran::with([
-            'santri',
+            'santri.kelas',
             'jenisPembayaran'
         ])->findOrFail($id);
 

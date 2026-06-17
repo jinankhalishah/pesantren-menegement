@@ -12,7 +12,9 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JenisPembayaranController;
+use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PengeluaranController;
 use App\Models\Absensi;
 use Symfony\Component\Routing\Loader\Configurator\Routes;
 
@@ -80,3 +82,17 @@ Route::get(
     '/transaksi-pembayaran/{id}/kwitansi',
     [PembayaranController::class, 'kwitansi']
 )->name('transaksi-pembayaran.kwitansi');
+
+Route::resource(
+    'pengeluaran',
+    PengeluaranController::class
+);
+
+Route::get(
+    '/keuangan',
+    [KeuanganController::class, 'index']
+)->name('keuangan.index');
+Route::get(
+    '/keuangan/pdf',
+    [KeuanganController::class, 'pdf']
+)->name('keuangan.pdf');

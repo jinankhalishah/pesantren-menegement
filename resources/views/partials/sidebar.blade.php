@@ -101,43 +101,41 @@
                 <i class="bi bi-chevron-down"></i>
             </a>
 
-            <div class="collapse {{ request()->is('keuangan*') || request()->is('jenis-pembayaran*') ? 'show' : '' }}"
-                id="keuanganMenu">
-                <ul class="nav flex-column ms-4 mt-2">
-                    <li class="nav-item">
-                        {{-- <a href="{{ route('keuangan.dashboard') }}" class="nav-link text-white"> --}}
-                        <a href="#" class="nav-link text-white"></a>
-                        Dashboard Keuangan
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('jenis-pembayaran.index') }}" class="nav-link text-white">
-                            Jenis Pembayaran
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('transaksi-pembayaran.index') }}" class="nav-link text-white">
-                        Transaksi Pembayaran
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        {{-- <a href="{{ route('pengeluaran.index') }}" class="nav-link text-white"> --}}
-                        <a href="#" class="nav-link text-white"></a>
-                        Pengeluaran
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        {{-- <a href="{{ route('keuangan.rekap') }}" class="nav-link text-white"> --}}
-                        <a href="#" class="nav-link text-white"></a>
-                        Rekap Keuangan
-                        </a>
-                    </li>
+            <li class="nav-item">
 
-                </ul>
+    <div class="collapse {{ request()->is('keuangan*') || request()->is('jenis-pembayaran*') || request()->is('transaksi-pembayaran*') || request()->is('pengeluaran*') ? 'show' : '' }}"
+        id="keuanganMenu">
 
-            </div>
+        <ul class="nav flex-column ms-4 mt-2">
 
-        </li>
+            <li class="nav-item">
+                <a href="{{ route('keuangan.index') }}" class="nav-link text-white">
+                    Dashboard Keuangan
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('jenis-pembayaran.index') }}" class="nav-link text-white">
+                    Jenis Pembayaran
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('transaksi-pembayaran.index') }}" class="nav-link text-white">
+                    Transaksi Pembayaran
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('pengeluaran.index') }}" class="nav-link text-white">
+                    Pengeluaran
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</li>
 
         <li>
             <a href="/logout"

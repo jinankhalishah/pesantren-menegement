@@ -4,191 +4,200 @@
 
 <head>
 
-```
-<meta charset="utf-8">
 
-<title>
-    Kwitansi Pembayaran
-</title>
+    <meta charset="utf-8">
 
-<style>
+    <!DOCTYPE html>
 
-    body {
+    <html>
 
-        font-family: Arial, sans-serif;
-        margin: 40px;
+    <head>
+        <meta charset="utf-8">
 
-    }
 
-    .title {
+        <title>Kwitansi Pembayaran</title>
 
-        text-align: center;
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 30px;
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 30px;
+                color: #000;
+            }
 
-    }
+            .header {
+                text-align: center;
+                border-bottom: 2px solid #000;
+                padding-bottom: 10px;
+                margin-bottom: 25px;
+            }
 
-    table {
+            .header h2 {
+                margin: 0;
+            }
 
-        width: 100%;
-        border-collapse: collapse;
+            .header p {
+                margin: 3px 0;
+            }
 
-    }
+            .title {
+                text-align: center;
+                font-size: 22px;
+                font-weight: bold;
+                margin-bottom: 25px;
+                text-decoration: underline;
+            }
 
-    td {
+            table {
+                width: 100%;
+            }
 
-        padding: 10px;
+            td {
+                padding: 6px 0;
+                vertical-align: top;
+            }
 
-    }
+            .nominal {
+                font-size: 20px;
+                font-weight: bold;
+                color: #198754;
+            }
 
-    .nominal {
+            .status {
+                display: inline-block;
+                padding: 6px 15px;
+                border: 1px solid #198754;
+                font-weight: bold;
+            }
 
-        font-size: 22px;
-        font-weight: bold;
-        color: green;
+            .footer {
+                margin-top: 60px;
+                text-align: right;
+            }
 
-    }
+            .ttd {
+                margin-top: 70px;
+                font-weight: bold;
+            }
 
-    .ttd {
+            .box {
+                border: 1px solid #000;
+                padding: 20px;
+            }
+        </style>
 
-        margin-top: 70px;
-        text-align: right;
 
-    }
-
-</style>
-```
-
-</head>
+    </head>
 
 <body>
 
-```
-<div class="title">
 
-    KWITANSI PEMBAYARAN
+    <div class="header">
 
-</div>
+        <h2>PONDOK PESANTREN MA'HADUL ILMI WATTAZKIYAH</h2>
 
-<table>
+        <p>
+            Sistem Informasi Administrasi Pesantren
+        </p>
 
-    <tr>
+    </div>
 
-        <td width="200">
-            Nomor
-        </td>
+    <div class="title">
 
-        <td>
+        KWITANSI PEMBAYARAN
 
-            :
-            INV-{{ str_pad($pembayaran->id,5,'0',STR_PAD_LEFT) }}
+    </div>
 
-        </td>
+    <div class="box">
 
-    </tr>
+        <table>
 
-    <tr>
+            <tr>
+                <td width="220">Nomor Kwitansi</td>
+                <td>: KWT/{{ date('Y') }}/{{ str_pad($pembayaran->id, 5, '0', STR_PAD_LEFT) }}</td>
+            </tr>
 
-        <td>
-            Nama Santri
-        </td>
+            <tr>
+                <td>Nama Santri</td>
+                <td>: {{ $pembayaran->santri->name }}</td>
+            </tr>
 
-        <td>
+            <tr>
+                <td>NIS</td>
+                <td>: {{ $pembayaran->santri->nis }}</td>
+            </tr>
 
-            :
-            {{ $pembayaran->santri->name }}
+            <tr>
+                <td>Kelas</td>
+                <td>:
+                    {{ $pembayaran->santri->kelas->nama_kelas ?? '-' }}
+                </td>
+            </tr>
 
-        </td>
+            <tr>
+                <td>Jenis Pembayaran</td>
+                <td>: {{ $pembayaran->jenisPembayaran->nama_pembayaran }}</td>
+            </tr>
 
-    </tr>
+            <tr>
+                <td>Tanggal Bayar</td>
+                <td>:
+                    {{ \Carbon\Carbon::parse($pembayaran->tanggal_bayar)->locale('id')->translatedFormat('d F Y') }}
+                </td>
+            </tr>
 
-    <tr>
+            <tr>
+                <td>Metode Pembayaran</td>
+                <td>: {{ $pembayaran->metode_bayar }}</td>
+            </tr>
 
-        <td>
-            Jenis Pembayaran
-        </td>
+            <tr>
+                <td>Keterangan</td>
+                <td>: {{ $pembayaran->keterangan ?? '-' }}</td>
+            </tr>
 
-        <td>
+            <tr>
+                <td>Jumlah Pembayaran</td>
+                <td class="nominal">
+                    Rp {{ number_format($pembayaran->jumlah_bayar, 0, ',', '.') }}
+                </td>
+            </tr>
 
-            :
-            {{ $pembayaran->jenisPembayaran->nama_pembayaran }}
+            <tr>
+                <td>Status</td>
+                <td>
+                    <span class="status">
+                        LUNAS
+                    </span>
+                </td>
+            </tr>
 
-        </td>
+        </table>
 
-    </tr>
+    </div>
 
-    <tr>
+    <div class="footer">
 
-        <td>
-            Tanggal Bayar
-        </td>
+        <p>
+            {{ \Carbon\Carbon::now()->locale('id')->translatedFormat('d F Y') }}
 
-        <td>
+        </p>
 
-            :
-            {{ \Carbon\Carbon::parse($pembayaran->tanggal_bayar)->translatedFormat('d F Y') }}
+        <p>
+            Bendahara
+        </p>
 
-        </td>
+        <div class="ttd">
 
-    </tr>
+            Ust. Syamsu Nandar
 
-    <tr>
+        </div>
 
-        <td>
-            Metode Bayar
-        </td>
+    </div>
 
-        <td>
+    <script>
+        window.print();
+    </script>
 
-            :
-            {{ $pembayaran->metode_bayar }}
-
-        </td>
-
-    </tr>
-
-    <tr>
-
-        <td>
-            Jumlah
-        </td>
-
-        <td class="nominal">
-
-            :
-            Rp {{ number_format($pembayaran->jumlah_bayar,0,',','.') }}
-
-        </td>
-
-    </tr>
-
-</table>
-
-<div class="ttd">
-
-    <p>
-
-        Bendahara
-
-    </p>
-
-    <br><br><br>
-
-    <strong>
-
-        ____________________
-
-    </strong>
-
-</div>
-
-<script>
-
-    window.print();
-
-</script>
-```
 
 </body>
 

@@ -1,105 +1,159 @@
 @extends('layout.appadmin')
 
 @section('content')
-    <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <div>
-            <h3 class="fw-bold mb-1">
-                Jenis Pembayaran
-            </h3>
+<div class="mb-4">
 
-            <p class="text-muted mb-0">
-                Kelola jenis pembayaran pesantren
-            </p>
-        </div>
 
-        <a href="{{ route('jenis-pembayaran.create') }}" class="btn btn-success rounded-3">
+<h3 class="fw-semibold">
+    Jenis Pembayaran
+</h3>
 
-            <i class="bi bi-plus-circle me-1"></i>
+<p class="text-muted mb-0">
+    Kelola jenis pembayaran pesantren
+
+
+</div>
+
+<div class="card border-0 shadow-sm rounded-4">
+
+
+<div class="card-header bg-white border-0 p-4">
+
+    <div class="d-flex justify-content-end">
+
+        <a href="{{ route('jenis-pembayaran.create') }}"
+            class="btn btn-success rounded-3 px-4">
+
+            <i class="bi bi-plus-lg me-1"></i>
+
             Tambah Data
 
         </a>
 
     </div>
 
-    <div class="card border-0 shadow-sm rounded-4">
+</div>
 
-        <div class="card-body p-0">
+<div class="table-responsive">
 
-            <div class="table-responsive">
+    <table class="table align-middle mb-0">
 
-                <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
 
-                    <thead class="table-light">
+            <tr>
 
-                        <tr>
+                <th class="px-4 py-3" width="80">
+                    No
+                </th>
 
-                            <th width="80">
-                                No
-                            </th>
+                <th class="px-4 py-3">
+                    Nama Pembayaran
+                </th>
 
-                            <th>
-                                Nama Pembayaran
-                            </th>
+                <th class="px-4 py-3">
+                    Kategori
+                </th>
 
-                            <th>
-                                Kategori
-                            </th>
+                <th class="px-4 py-3">
+                    Nominal
+                </th>
 
-                            <th>
-                                Nominal
-                            </th>
+                <th class="px-4 py-3 text-center">
+                    Aksi
+                </th>
 
-                        </tr>
+            </tr>
 
-                    </thead>
+        </thead>
 
-                    <tbody>
+        <tbody>
 
-                        @forelse($data as $item)
-                            <tr>
+            @forelse($data as $item)
 
-                                <td>
-                                    {{ $loop->iteration }}
-                                </td>
+                <tr>
 
-                                <td>
-                                    {{ $item->nama_pembayaran }}
-                                </td>
+                    <td class="px-4 py-3">
 
-                                <td>
-                                    {{ $item->kategori }}
-                                </td>
+                        {{ $loop->iteration }}
 
-                                <td>
+                    </td>
 
-                                    Rp
-                                    {{ number_format($item->nominal, 0, ',', '.') }}
+                    <td class="px-4 py-3 fw-semibold">
 
-                                </td>
+                        {{ $item->nama_pembayaran }}
 
-                            </tr>
+                    </td>
 
-                        @empty
+                    <td class="px-4 py-3 fw-semibold">
 
-                            <tr>
+                            {{ $item->kategori }}
 
-                                <td colspan="4" class="text-center py-4">
+                        </span>
 
-                                    Belum ada data
+                    </td>
 
-                                </td>
+                    <td class="px-4 py-3 fw-semibold text-success">
 
-                            </tr>
-                        @endforelse
+                        Rp {{ number_format($item->nominal, 0, ',', '.') }}
 
-                    </tbody>
+                    </td>
 
-                </table>
+                    <td class="px-4 py-3 text-center">
 
-            </div>
+                        <div class="d-flex justify-content-center gap-2">
 
-        </div>
+                            <a href="{{ route('jenis-pembayaran.edit',$item->id) }}"
+                                class="btn btn-sm btn-primary rounded-3">
 
-    </div>
+                                <i class="bi bi-pencil-square"></i>
+
+                            </a>
+
+                            <form action="{{ route('jenis-pembayaran.destroy',$item->id) }}"
+                                method="POST">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                    onclick="return confirm('Yakin ingin menghapus data ini?')"
+                                    class="btn btn-sm btn-danger rounded-3">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            @empty
+
+                <tr>
+
+                    <td colspan="5"
+                        class="text-center py-4 text-muted">
+
+                        Belum ada data
+
+                    </td>
+
+                </tr>
+
+            @endforelse
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+</div>
+
 @endsection

@@ -5,11 +5,11 @@
 
 
         <h3 class="fw-semibold">
-            Transaksi Pembayaran
+            Data Pengeluaran
         </h3>
 
         <p class="text-muted mb-0">
-            Kelola data pembayaran santri
+            Kelola data pengeluaran pondok pesantren
         </p>
 
 
@@ -32,18 +32,18 @@
 
                         </span>
 
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            class="form-control border-start-0" placeholder="Cari pembayaran...">
+                        <input type="text" name="search" class="form-control border-start-0"
+                            placeholder="Cari pengeluaran..." value="{{ request('search') }}">
 
                     </div>
 
                 </form>
 
-                <a href="{{ route('transaksi-pembayaran.create') }}" class="btn btn-success rounded-3 px-4">
+                <a href="{{ route('pengeluaran.create') }}" class="btn btn-success rounded-3 px-4">
 
                     <i class="bi bi-plus-lg me-1"></i>
 
-                    Tambah Pembayaran
+                    Tambah Pengeluaran
 
                 </a>
 
@@ -60,27 +60,19 @@
                     <tr>
 
                         <th class="px-4 py-3">
-                            No
-                        </th>
-
-                        <th class="px-4 py-3">
                             Tanggal
                         </th>
 
                         <th class="px-4 py-3">
-                            Santri
+                            Kategori
                         </th>
 
                         <th class="px-4 py-3">
-                            Jenis Pembayaran
+                            Keterangan
                         </th>
 
                         <th class="px-4 py-3">
                             Nominal
-                        </th>
-
-                        <th class="px-4 py-3">
-                            Metode
                         </th>
 
                         <th class="px-4 py-3 text-center">
@@ -93,64 +85,34 @@
 
                 <tbody>
 
-                    @forelse($pembayarans as $item)
+                    @forelse ($pengeluarans as $item)
                         <tr>
 
                             <td class="px-4 py-3">
 
-                                {{ $loop->iteration }}
+                                {{ \Carbon\Carbon::parse($item->tanggal)->locale('id')->translatedFormat('d F Y') }}
 
                             </td>
 
                             <td class="px-4 py-3">
 
-                                {{ \Carbon\Carbon::parse($item->tanggal_bayar)->locale('id')->translatedFormat('d F Y') }}
+                                <span class="badge bg-secondary">
+
+                                    {{ $item->kategori }}
+
+                                </span>
 
                             </td>
 
                             <td class="px-4 py-3">
 
-                                <div class="fw-semibold">
-
-                                    {{ $item->santri->name }}
-
-                                </div>
-
-                                <small class="text-muted">
-
-                                    {{ $item->santri->nis }}
-
-                                </small>
+                                {{ $item->keterangan }}
 
                             </td>
 
-                            <td class="px-4 py-3">
+                            <td class="px-4 py-3 fw-semibold text-danger">
 
-                                {{ $item->jenisPembayaran->nama_pembayaran }}
-
-                            </td>
-
-                            <td class="px-4 py-3 fw-semibold text-success">
-
-                                Rp {{ number_format($item->jumlah_bayar, 0, ',', '.') }}
-
-                            </td>
-
-                            <td class="px-4 py-3">
-
-                                @if ($item->metode_bayar == 'Tunai')
-                                    <span class="badge rounded-pill text-bg-success px-3 py-2">
-
-                                        Tunai
-
-                                    </span>
-                                @else
-                                    <span class="badge rounded-pill text-bg-primary px-3 py-2">
-
-                                        Transfer
-
-                                    </span>
-                                @endif
+                                Rp {{ number_format($item->nominal, 0, ',', '.') }}
 
                             </td>
 
@@ -158,21 +120,14 @@
 
                                 <div class="d-flex justify-content-center gap-2">
 
-                                    <a href="{{ route('transaksi-pembayaran.edit', $item->id) }}"
+                                    <a href="{{ route('pengeluaran.edit', $item->id) }}"
                                         class="btn btn-sm btn-primary rounded-3">
 
                                         <i class="bi bi-pencil-square"></i>
 
                                     </a>
 
-                                    <a href="{{ route('transaksi-pembayaran.kwitansi', $item->id) }}" target="_blank"
-                                        class="btn btn-sm btn-info text-white rounded-3">
-
-                                        <i class="bi bi-printer"></i>
-
-                                    </a>
-
-                                    <form action="{{ route('transaksi-pembayaran.destroy', $item->id) }}" method="POST">
+                                    <form action="{{ route('pengeluaran.destroy', $item->id) }}" method="POST">
 
                                         @csrf
                                         @method('DELETE')
@@ -196,9 +151,9 @@
 
                         <tr>
 
-                            <td colspan="7" class="text-center py-4 text-muted">
+                            <td colspan="5" class="text-center py-4">
 
-                                Belum ada data pembayaran
+                                Belum ada data pengeluaran
 
                             </td>
 
@@ -210,6 +165,7 @@
             </table>
 
         </div>
+
 
     </div>
 @endsection
