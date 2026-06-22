@@ -15,6 +15,7 @@ use App\Http\Controllers\JenisPembayaranController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\VisiMisiController;
 use App\Models\Absensi;
 use Symfony\Component\Routing\Loader\Configurator\Routes;
 
@@ -69,7 +70,7 @@ Route::get(
     [AbsensiController::class, 'rekapPdf']
 )->name('absensi.rekap.pdf');
 
-
+// KEUANGAN
 Route::resource(
     'jenis-pembayaran',
     JenisPembayaranController::class
@@ -96,3 +97,19 @@ Route::get(
     '/keuangan/pdf',
     [KeuanganController::class, 'pdf']
 )->name('keuangan.pdf');
+
+Route::get(
+    '/visi-misi',
+    [VisiMisiController::class, 'index']
+)->name('visi-misi.index');
+
+//INFORMASI
+Route::get(
+    '/visi-misi/edit',
+    [VisiMisiController::class, 'edit']
+)->name('visi-misi.edit');
+
+Route::put(
+    '/visi-misi/update',
+    [VisiMisiController::class, 'update']
+)->name('visi-misi.update');

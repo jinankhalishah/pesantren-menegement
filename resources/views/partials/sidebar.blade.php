@@ -1,6 +1,5 @@
 <div id="sidebar" class="sidebar d-flex flex-column text-white p-3"
-    style="background: linear-gradient(180deg, #0f5132, #198754); width:250px; height:100vh; position:fixed; transition: all 0.3s; overflow:hidden;">
-
+    style="background: linear-gradient(180deg, #0f5132, #198754); width:250px; height:100vh; position:fixed; transition: all 0.3s; overflow-y:auto;">
     <!-- Header -->
     <div class="mb-4 d-flex justify-content-between align-items-center">
         <div id="sidebar-text">
@@ -14,7 +13,7 @@
     </div>
 
     <!-- Menu -->
-    <ul class="nav flex-column gap-2">
+    <ul class="nav flex-column gap-2 flex-grow-1">
 
         <li>
             <a href="/dashboard"
@@ -23,6 +22,69 @@
                 <i class="bi bi-grid me-3 icon"></i>
                 <span class="menu-text">Dashboard</span>
             </a>
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-3 text-white" data-bs-toggle="collapse"
+                href="#informasiMenu" role="button">
+
+                <i class="bi bi-info-circle me-3 icon"></i>
+
+                <span class="menu-text flex-grow-1">
+                    Informasi
+                </span>
+
+                <i class="bi bi-chevron-down"></i>
+
+            </a>
+
+            <div class="collapse
+        {{ request()->is('visi-misi*') ||
+        request()->is('program-unggulan*') ||
+        request()->is('prestasi*') ||
+        request()->is('berita*')
+            ? 'show'
+            : '' }}"
+                id="informasiMenu">
+
+                <ul class="nav flex-column ms-4 mt-2">
+
+                    <li class="nav-item">
+                        <a href="{{ route('visi-misi.index') }}" class="nav-link text-white">
+                        Visi & Misi
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('program-unggulan.index') }}" class="nav-link text-white"> --}}
+                        <a href="#" class="nav-link text-white"></a>
+                        Program Unggulan
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('prestasi.index') }}" class="nav-link text-white"> --}}
+                        <a href="#" class="nav-link text-white"></a>
+                        Prestasi
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('berita.index') }}" class="nav-link text-white"> --}}
+                        <a href="#" class="nav-link text-white"></a>
+                        Berita
+
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
         </li>
 
         <li>
@@ -92,50 +154,60 @@
         </li>
 
         <li class="nav-item">
+
             <a class="nav-link d-flex align-items-center px-3 py-2 rounded-3 text-white" data-bs-toggle="collapse"
                 href="#keuanganMenu" role="button">
+
                 <i class="bi bi-wallet2 me-3 icon"></i>
+
                 <span class="menu-text flex-grow-1">
                     Keuangan
                 </span>
+
                 <i class="bi bi-chevron-down"></i>
+
             </a>
 
-            <li class="nav-item">
+            <div class="collapse
+        {{ request()->is('keuangan*') ||
+        request()->is('jenis-pembayaran*') ||
+        request()->is('transaksi-pembayaran*') ||
+        request()->is('pengeluaran*')
+            ? 'show'
+            : '' }}"
+                id="keuanganMenu">
 
-    <div class="collapse {{ request()->is('keuangan*') || request()->is('jenis-pembayaran*') || request()->is('transaksi-pembayaran*') || request()->is('pengeluaran*') ? 'show' : '' }}"
-        id="keuanganMenu">
+                <ul class="nav flex-column ms-4 mt-2">
 
-        <ul class="nav flex-column ms-4 mt-2">
+                    <li class="nav-item">
+                        <a href="{{ route('keuangan.index') }}" class="nav-link text-white">
+                            Dashboard Keuangan
+                        </a>
+                    </li>
 
-            <li class="nav-item">
-                <a href="{{ route('keuangan.index') }}" class="nav-link text-white">
-                    Dashboard Keuangan
-                </a>
-            </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jenis-pembayaran.index') }}" class="nav-link text-white">
+                            Jenis Pembayaran
+                        </a>
+                    </li>
 
-            <li class="nav-item">
-                <a href="{{ route('jenis-pembayaran.index') }}" class="nav-link text-white">
-                    Jenis Pembayaran
-                </a>
-            </li>
+                    <li class="nav-item">
+                        <a href="{{ route('transaksi-pembayaran.index') }}" class="nav-link text-white">
+                            Transaksi Pembayaran
+                        </a>
+                    </li>
 
-            <li class="nav-item">
-                <a href="{{ route('transaksi-pembayaran.index') }}" class="nav-link text-white">
-                    Transaksi Pembayaran
-                </a>
-            </li>
+                    <li class="nav-item">
+                        <a href="{{ route('pengeluaran.index') }}" class="nav-link text-white">
+                            Pengeluaran
+                        </a>
+                    </li>
 
-            <li class="nav-item">
-                <a href="{{ route('pengeluaran.index') }}" class="nav-link text-white">
-                    Pengeluaran
-                </a>
-            </li>
+                </ul>
 
-        </ul>
+            </div>
 
-    </div>
-</li>
+        </li>
 
         <li>
             <a href="/logout"
@@ -148,7 +220,7 @@
 
     </ul>
 
-    <div class="mt-auto"></div>
+    {{-- <div class="mt-auto"></div> --}}
 
     <!-- User -->
     <div class="pt-3 border-top border-light border-opacity-25 d-flex align-items-center">

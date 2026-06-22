@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Santri;
+use App\Models\VisiMisi;
 
 class HomeController extends Controller
 {
     public function index()
     {
+
+        $jumlahSantriAktif = Santri::where('status', 'Aktif')->count();
+        $visiMisi = VisiMisi::first();
+
         $facilities = [
             [
                 'icon' => 'bi-building',
@@ -45,6 +51,8 @@ class HomeController extends Controller
         ];
 
         return view('pages.home', compact(
+            'jumlahSantriAktif',
+            'visiMisi',
             'facilities',
             'programs',
             'achievements'

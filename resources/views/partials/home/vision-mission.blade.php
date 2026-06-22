@@ -3,7 +3,7 @@
         <div class="text-center mb-5">
             <h2 class="fw-bold">Visi & Misi</h2>
             <p class="text-muted">
-                Landasan dan tujuan pendidikan Pondok Pesantren Al-Hikmah
+                Landasan dan tujuan pendidikan Pondok Pesantren Ma'hadul Ilmi Wattazkiyah
             </p>
         </div>
 
@@ -16,9 +16,7 @@
                         <h4 class="mb-0 fw-semibold">Visi</h4>
                     </div>
                     <p class="text-muted">
-                        Menjadi lembaga pendidikan Islam unggulan yang mencetak
-                        generasi Qur’ani, berilmu, berakhlak mulia, dan mampu
-                        berkontribusi bagi umat dan bangsa.
+                        {{ $visiMisi->visi ?? '-' }}
                     </p>
                 </div>
             </div>
@@ -31,10 +29,17 @@
                         <h4 class="mb-0 fw-semibold">Misi</h4>
                     </div>
                     <ul class="text-muted mb-0">
-                        <li>Menyelenggarakan pendidikan Islam yang berkualitas</li>
-                        <li>Membentuk karakter santri berakhlakul karimah</li>
-                        <li>Mengintegrasikan ilmu agama dan ilmu umum</li>
-                        <li>Membekali santri dengan keterampilan hidup</li>
+                        @if ($visiMisi)
+
+                            @foreach (explode("\n", $visiMisi->misi) as $misi)
+                                @if (trim($misi))
+                                    <li>
+                                        {{ trim($misi) }}
+                                    </li>
+                                @endif
+                            @endforeach
+
+                        @endif
                     </ul>
                 </div>
             </div>
