@@ -15,8 +15,11 @@ use App\Http\Controllers\JenisPembayaranController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\ProgramUnggulanController;
 use App\Models\Absensi;
+
 use Symfony\Component\Routing\Loader\Configurator\Routes;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -113,3 +116,21 @@ Route::put(
     '/visi-misi/update',
     [VisiMisiController::class, 'update']
 )->name('visi-misi.update');
+
+Route::resource(
+    'program-unggulan',
+    ProgramUnggulanController::class
+);
+
+Route::resource(
+    'prestasi',
+    PrestasiController::class
+);
+
+Route::get('/logout', function () {
+
+    session()->flush();
+
+    return redirect('/login');
+
+})->name('logout');

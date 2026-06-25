@@ -9,7 +9,8 @@
         <p class="lead">
             Membentuk Generasi Qur'ani yang Berilmu dan Berakhlak Mulia
         </p>
-        <a href="#" class="btn btn-success btn-lg mt-3">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfkkTl2X7B_0BUYAoGSjafj48wVddvd85154DcURSCXRs-C4g/viewform"
+        target="_blank" class="btn btn-success btn-lg mt-3">
             Daftar Sekarang
         </a>
     </div>

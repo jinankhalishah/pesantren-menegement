@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top shadow">
     <div class="container">
         <a class="navbar-brand fw-bold" href="{{ url('/') }}">
-            Pondok Pesantren Al-Hikmah
+            Pondok Pesantren Ma'hadul Ilmi Wattazkiyah
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

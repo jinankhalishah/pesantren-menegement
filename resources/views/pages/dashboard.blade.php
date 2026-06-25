@@ -4,7 +4,7 @@
     <div class="mb-4">
         <h3 class="fw-semibold">Dashboard</h3>
         <p class="text-muted mb-0">
-            Selamat datang di Sistem Informasi Pondok Pesantren Al-Hikmah
+            Selamat datang di Sistem Informasi Pondok Pesantren Ma'hadul Ilmi Wattazkiyah
         </p>
     </div>
 
@@ -74,7 +74,7 @@
 
                             <small class="text-success mb-1">
 
-                                {{ $totalHadirHariIni }} dari {{ $totalAbsenHariIni }} santri 
+                                {{ $totalHadirHariIni }} dari {{ $totalAbsenHariIni }} santri
 
                             </small>
 
@@ -95,48 +95,59 @@
 
         <!-- Aktivitas -->
         <div class="col-lg-6">
-            <div class="card border-0 shadow-sm rounded-4 p-3">
-                <h5 class="mb-3">Aktivitas Terbaru</h5>
 
-                <div class="d-flex align-items-start mb-3">
-                    <span class="bg-success rounded-circle me-3" style="width:8px;height:8px;"></span>
-                    <div>
-                        <div class="fw-semibold">Ahmad Fauzi</div>
-                        <small class="text-muted">Santri Baru • 2 jam yang lalu</small>
-                    </div>
-                </div>
+            <div class="card border-0 shadow-sm rounded-4 h-100">
 
-                <hr>
+                <div class="card-body">
 
-                <div class="d-flex align-items-start mb-3">
-                    <span class="bg-success rounded-circle me-3" style="width:8px;height:8px;"></span>
-                    <div>
-                        <div class="fw-semibold">Kelas 3 Aliyah</div>
-                        <small class="text-muted">Pembayaran • 3 jam yang lalu</small>
-                    </div>
-                </div>
+                    <h5 class="mb-4">
+                        Aktivitas Terbaru
+                    </h5>
 
-                <hr>
+                    @forelse($aktivitasTerbaru as $item)
+                        <div class="d-flex align-items-start mb-3">
 
-                <div class="d-flex align-items-start mb-3">
-                    <span class="bg-success rounded-circle me-3" style="width:8px;height:8px;"></span>
-                    <div>
-                        <div class="fw-semibold">Ujian Tengah Semester</div>
-                        <small class="text-muted">Ujian • 5 jam yang lalu</small>
-                    </div>
-                </div>
+                            <span class="bg-{{ $item['icon'] }}
+                        rounded-circle me-3 mt-2"
+                                style="width:8px;height:8px;">
+                            </span>
 
-                <hr>
+                            <div>
 
-                <div class="d-flex align-items-start">
-                    <span class="bg-success rounded-circle me-3" style="width:8px;height:8px;"></span>
-                    <div>
-                        <div class="fw-semibold">Libur Hari Raya</div>
-                        <small class="text-muted">Pengumuman • 1 hari yang lalu</small>
-                    </div>
+                                <div class="fw-semibold">
+
+                                    {{ $item['judul'] }}
+
+                                </div>
+
+                                <small class="text-muted">
+
+                                    {{ $item['keterangan'] }}
+                                    •
+
+                                    {{ \Carbon\Carbon::parse($item['waktu'])->diffForHumans() }}
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        @if (!$loop->last)
+                            <hr>
+                        @endif
+
+                    @empty
+
+                        <p class="text-muted">
+                            Belum ada aktivitas
+                        </p>
+                    @endforelse
+
                 </div>
 
             </div>
+
         </div>
 
         <!-- Jadwal -->

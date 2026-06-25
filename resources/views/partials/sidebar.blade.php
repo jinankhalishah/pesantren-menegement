@@ -4,7 +4,7 @@
     <div class="mb-4 d-flex justify-content-between align-items-center">
         <div id="sidebar-text">
             <h6 class="fw-semibold mb-1">Sistem Informasi</h6>
-            <small class="text-white-50">Ponpes Al-Hikmah</small>
+            <small class="text-white-50">Ponpes Ma'hadul Ilmi Wattazkiyah</small>
         </div>
 
         <button onclick="toggleSidebar()" class="btn btn-sm btn-light">
@@ -53,23 +53,18 @@
                     <li class="nav-item">
                         <a href="{{ route('visi-misi.index') }}" class="nav-link text-white">
                         Visi & Misi
-
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        {{-- <a href="{{ route('program-unggulan.index') }}" class="nav-link text-white"> --}}
-                        <a href="#" class="nav-link text-white"></a>
+                        <a href="{{ route('program-unggulan.index') }}" class="nav-link text-white">
                         Program Unggulan
-
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        {{-- <a href="{{ route('prestasi.index') }}" class="nav-link text-white"> --}}
-                        <a href="#" class="nav-link text-white"></a>
+                        <a href="{{ route('prestasi.index') }}" class="nav-link text-white">
                         Prestasi
-
                         </a>
                     </li>
 
@@ -77,7 +72,6 @@
                         {{-- <a href="{{ route('berita.index') }}" class="nav-link text-white"> --}}
                         <a href="#" class="nav-link text-white"></a>
                         Berita
-
                         </a>
                     </li>
 
@@ -210,7 +204,7 @@
         </li>
 
         <li>
-            <a href="/logout"
+            <a href="{{ route('logout') }}"
                 class="nav-link d-flex align-items-center px-3 py-2 rounded-3
                {{ request()->is('logout*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
                 <i class="bi bi-box-arrow-right me-3 icon"></i>
@@ -219,8 +213,6 @@
         </li>
 
     </ul>
-
-    {{-- <div class="mt-auto"></div> --}}
 
     <!-- User -->
     <div class="pt-3 border-top border-light border-opacity-25 d-flex align-items-center">

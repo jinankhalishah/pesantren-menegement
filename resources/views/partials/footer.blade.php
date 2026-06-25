@@ -4,7 +4,7 @@
 
             {{-- Tentang --}}
             <div class="col-md-4 mb-4">
-                <h5 class="fw-bold">Pondok Pesantren Al-Hikmah</h5>
+                <h5 class="fw-bold">Pondok Pesantren </br>Ma'hadul Ilmi Wattazkiyah</h5>
                 <p class="small">
                     Lembaga pendidikan Islam yang berkomitmen membentuk generasi
                     Qur'ani, berilmu, dan berakhlak mulia.
@@ -36,7 +36,7 @@
         <hr class="border-light">
 
         <div class="text-center pb-3 small">
-            © {{ date('Y') }} Pondok Pesantren Al-Hikmah. All rights reserved.
+            © {{ date('Y') }} Pondok Pesantren Ma'hadul Ilmi Wattazkiyah. All rights reserved.
         </div>
     </div>
 </footer>

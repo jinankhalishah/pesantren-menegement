@@ -15,7 +15,7 @@
                                 <i class="bi bi-lock fs-4"></i>
                             </div>
                             <h4 class="fw-bold mb-1">Sistem Informasi Ponpes</h4>
-                            <p class="text-muted mb-0">Pondok Pesantren Al-Hikmah</p>
+                            <p class="text-muted mb-0">Pondok Pesantren Ma'hadul Ilmi Wattazkiyah</p>
                         </div>
 
                         <form method="POST" action="/login">
@@ -65,7 +65,7 @@
                         </form>
 
                         <div class="text-center text-muted small mt-4">
-                            © 2026 Pondok Pesantren Al-Hikmah
+                            © 2026 Pondok Pesantren Ma'hadul Ilmi Wattazkiyah
                         </div>
                     </div>
                 </div>

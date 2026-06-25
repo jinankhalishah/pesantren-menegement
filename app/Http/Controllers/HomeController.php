@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Santri;
 use App\Models\VisiMisi;
+use App\Models\ProgramUnggulan;
+use App\Models\Prestasi;
 
 class HomeController extends Controller
 {
@@ -13,6 +15,9 @@ class HomeController extends Controller
 
         $jumlahSantriAktif = Santri::where('status', 'Aktif')->count();
         $visiMisi = VisiMisi::first();
+        $prestasis = Prestasi::latest()
+            ->take(3)
+            ->get();
 
         $facilities = [
             [
@@ -37,12 +42,10 @@ class HomeController extends Controller
             ],
         ];
 
-        $programs = [
-            ['name' => 'Tahfidz Al-Quran', 'level' => 'Semua Tingkat'],
-            ['name' => 'Bahasa Arab & Inggris', 'level' => 'Intensif'],
-            ['name' => 'Kitab Kuning', 'level' => 'Tsanawiyah & Aliyah'],
-            ['name' => 'Komputer & IT', 'level' => 'Ekstrakurikuler'],
-        ];
+        $programs = ProgramUnggulan::where(
+            'status',
+            1
+        )->latest()->get();
 
         $achievements = [
             ['title' => 'Juara 1 Lomba Tahfidz Nasional', 'year' => 2023],
@@ -53,6 +56,7 @@ class HomeController extends Controller
         return view('pages.home', compact(
             'jumlahSantriAktif',
             'visiMisi',
+            'prestasis',
             'facilities',
             'programs',
             'achievements'
