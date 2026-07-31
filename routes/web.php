@@ -19,6 +19,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\ProgramUnggulanController;
 use App\Models\Absensi;
+use App\Http\Controllers\BeritaController;
 
 use Symfony\Component\Routing\Loader\Configurator\Routes;
 
@@ -126,6 +127,11 @@ Route::resource(
     'prestasi',
     PrestasiController::class
 );
+
+Route::resource('berita', BeritaController::class)
+    ->parameters([
+        'berita' => 'berita'
+    ]);
 
 Route::get('/logout', function () {
 

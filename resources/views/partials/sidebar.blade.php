@@ -69,8 +69,7 @@
                     </li>
 
                     <li class="nav-item">
-                        {{-- <a href="{{ route('berita.index') }}" class="nav-link text-white"> --}}
-                        <a href="#" class="nav-link text-white"></a>
+                        <a href="{{ route('berita.index') }}" class="nav-link text-white">
                         Berita
                         </a>
                     </li>

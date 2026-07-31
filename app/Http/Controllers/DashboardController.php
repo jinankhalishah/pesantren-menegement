@@ -43,20 +43,13 @@ class DashboardController extends Controller
 
         $aktivitas = collect();
 
-
         foreach ($santriTerbaru as $santri) {
 
             $aktivitas->push([
-
                 'judul' => $santri->name,
-
                 'keterangan' => 'Santri Baru',
-
                 'waktu' => $santri->created_at,
-
-                'icon' => 'success'
-
-            ]);
+                'icon' => 'success'            ]);
         }
 
 
@@ -65,41 +58,28 @@ class DashboardController extends Controller
             ->get();
 
         foreach ($pembayaranTerbaru as $item) {
-
             $aktivitas->push([
-
                 'judul' => 'Pembayaran Rp ' .
                     number_format($item->jumlah_bayar, 0, ',', '.'),
-
                 'keterangan' => 'Transaksi Pembayaran',
-
                 'waktu' => $item->created_at,
-
                 'icon' => 'primary'
-
             ]);
         }
-
 
         $pengeluaranTerbaru = \App\Models\Pengeluaran::latest()
             ->take(3)
             ->get();
 
         foreach ($pengeluaranTerbaru as $item) {
-
             $aktivitas->push([
-
                 'judul' => $item->kategori,
-
                 'keterangan' => 'Pengeluaran',
-
                 'waktu' => $item->created_at,
-
                 'icon' => 'danger'
 
             ]);
         }
-
 
         $aktivitasTerbaru = $aktivitas
             ->sortByDesc('waktu')

@@ -84,13 +84,21 @@
         }
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+    {{-- <script>
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('collapsed');
         }
-    </script>
+    </script> --}}
+
+    <!-- Summernote -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+    
+    @stack('scripts')
+
 </body>
 
 </html>
