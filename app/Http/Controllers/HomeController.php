@@ -7,6 +7,7 @@ use App\Models\Santri;
 use App\Models\VisiMisi;
 use App\Models\ProgramUnggulan;
 use App\Models\Prestasi;
+use App\Models\Berita;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,9 @@ class HomeController extends Controller
         $jumlahSantriAktif = Santri::where('status', 'Aktif')->count();
         $visiMisi = VisiMisi::first();
         $prestasis = Prestasi::latest()
+            ->take(3)
+            ->get();
+        $beritas = Berita::latest()
             ->take(3)
             ->get();
 
@@ -57,6 +61,7 @@ class HomeController extends Controller
             'jumlahSantriAktif',
             'visiMisi',
             'prestasis',
+            'beritas',
             'facilities',
             'programs',
             'achievements'

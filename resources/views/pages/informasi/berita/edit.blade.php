@@ -59,10 +59,16 @@
                         type="file"
                         name="gambar"
                         id="gambar"
-                        class="form-control">
+                        class="form-control @error('gambar') is-invalid @enderror">
+
+                    @error('gambar')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
                     <small class="text-muted">
-                        Kosongkan jika tidak ingin mengganti gambar.
+                        Kosongkan jika tidak ingin mengganti gambar. Format: JPG, JPEG, PNG, WEBP. Maksimal 8 MB.
                     </small>
 
                 </div>
@@ -76,7 +82,7 @@
 
                     <img
                         id="preview"
-                        src="{{ asset('storage/'.$berita->gambar) }}"
+                        src="{{ asset('uploads/berita/'.$berita->gambar) }}"
                         class="img-fluid rounded shadow-sm"
                         style="max-height:250px;">
 

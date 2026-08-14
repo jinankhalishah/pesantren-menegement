@@ -8,78 +8,43 @@
         </div>
 
         <div class="row g-4">
-            {{-- Item --}}
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
+            @forelse($beritas as $berita)
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
 
-                    <div class="ratio ratio-16x9">
-                        <img src="https://images.unsplash.com/photo-1665118927278-aba03fbc3dce"
-                             class="img-fluid rounded-top" alt="Berita">
-                    </div>
+                        <div class="ratio ratio-16x9">
+                            @if($berita->gambar)
+                                <img src="{{ asset('uploads/berita/'.$berita->gambar) }}"
+                                    class="img-fluid rounded-top" alt="{{ $berita->judul }}" style="object-fit:cover;">
+                            @else
+                                <div class="d-flex justify-content-center align-items-center bg-secondary bg-opacity-25 rounded-top">
+                                    <i class="bi bi-newspaper text-secondary" style="font-size:3rem;"></i>
+                                </div>
+                            @endif
+                        </div>
 
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">
-                            Kegiatan Belajar Santri
-                        </h5>
-                        <p class="card-text text-muted">
-                            Suasana kegiatan belajar santri di lingkungan pondok pesantren.
-                        </p>
+                        <div class="card-body d-flex flex-column">
+                            <small class="text-muted mb-2">
+                                {{ $berita->created_at->format('d M Y') }}
+                            </small>
+                            <h5 class="card-title">
+                                {{ $berita->judul }}
+                            </h5>
+                            <p class="card-text text-muted">
+                                {{ \Illuminate\Support\Str::limit($berita->ringkasan, 100) }}
+                            </p>
 
-                        <a href="#" class="btn btn-outline-primary mt-auto">
-                            Lihat Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Item --}}
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-
-                    <div class="ratio ratio-16x9">
-                        <img src="https://images.unsplash.com/photo-1654366698665-e6d611a9aaa9"
-                             class="img-fluid rounded-top" alt="Berita">
-                    </div>
-
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">
-                            Fasilitas Ruang Kelas
-                        </h5>
-                        <p class="card-text text-muted">
-                            Ruang kelas yang nyaman untuk menunjang pembelajaran.
-                        </p>
-
-                        <a href="#" class="btn btn-outline-primary mt-auto">
-                            Lihat Selengkapnya
-                        </a>
+                            <a href="{{ route('berita.show', $berita) }}" class="btn btn-outline-primary mt-auto">
+                                Lihat Selengkapnya
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            {{-- Item --}}
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-
-                    <div class="ratio ratio-16x9">
-                        <img src="https://images.unsplash.com/photo-1568667256531-7d5ac92eaa7a"
-                             class="img-fluid rounded-top" alt="Berita">
-                    </div>
-
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">
-                            Perpustakaan Pondok
-                        </h5>
-                        <p class="card-text text-muted">
-                            Koleksi buku untuk mendukung literasi santri.
-                        </p>
-
-                        <a href="#" class="btn btn-outline-primary mt-auto">
-                            Lihat Selengkapnya
-                        </a>
-                    </div>
+            @empty
+                <div class="col-12 text-center text-muted py-5">
+                    Belum ada berita.
                 </div>
-            </div>
-
+            @endforelse
         </div>
     </div>
 </section>

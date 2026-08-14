@@ -1,18 +1,29 @@
 <div id="sidebar" class="sidebar d-flex flex-column text-white p-3"
     style="background: linear-gradient(180deg, #0f5132, #198754); width:250px; height:100vh; position:fixed; transition: all 0.3s; overflow-y:auto;">
     <!-- Header -->
-    <div class="mb-4 d-flex justify-content-between align-items-center">
+    <div class="mb-4 d-flex justify-content-between align-items-center sidebar-header">
         <div id="sidebar-text">
             <h6 class="fw-semibold mb-1">Sistem Informasi</h6>
             <small class="text-white-50">Ponpes Ma'hadul Ilmi Wattazkiyah</small>
         </div>
 
-        <button onclick="toggleSidebar()" class="btn btn-sm btn-light">
+        <button onclick="toggleSidebar()" class="btn btn-sm btn-light toggle-btn">
             <i class="bi bi-list"></i>
         </button>
     </div>
 
     <!-- Menu -->
+    @php
+        $informasiActive = request()->is('visi-misi*') ||
+            request()->is('program-unggulan*') ||
+            request()->is('prestasi*') ||
+            request()->is('berita*');
+        $keuanganActive = request()->is('keuangan*') ||
+            request()->is('jenis-pembayaran*') ||
+            request()->is('transaksi-pembayaran*') ||
+            request()->is('pengeluaran*');
+    @endphp
+
     <ul class="nav flex-column gap-2 flex-grow-1">
 
         <li>
@@ -26,8 +37,8 @@
 
         <li class="nav-item">
 
-            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-3 text-white" data-bs-toggle="collapse"
-                href="#informasiMenu" role="button">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-3 {{ $informasiActive ? 'active bg-white text-success fw-semibold' : 'text-white' }}"
+                data-bs-toggle="collapse" href="#informasiMenu" role="button">
 
                 <i class="bi bi-info-circle me-3 icon"></i>
 
@@ -39,38 +50,35 @@
 
             </a>
 
-            <div class="collapse
-        {{ request()->is('visi-misi*') ||
-        request()->is('program-unggulan*') ||
-        request()->is('prestasi*') ||
-        request()->is('berita*')
-            ? 'show'
-            : '' }}"
-                id="informasiMenu">
+            <div class="collapse {{ $informasiActive ? 'show' : '' }}" id="informasiMenu">
 
                 <ul class="nav flex-column ms-4 mt-2">
 
                     <li class="nav-item">
-                        <a href="{{ route('visi-misi.index') }}" class="nav-link text-white">
-                        Visi & Misi
+                        <a href="{{ route('visi-misi.index') }}"
+                            class="nav-link rounded-3 px-2 {{ request()->is('visi-misi*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
+                            Visi & Misi
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('program-unggulan.index') }}" class="nav-link text-white">
-                        Program Unggulan
+                        <a href="{{ route('program-unggulan.index') }}"
+                            class="nav-link rounded-3 px-2 {{ request()->is('program-unggulan*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
+                            Program Unggulan
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('prestasi.index') }}" class="nav-link text-white">
-                        Prestasi
+                        <a href="{{ route('prestasi.index') }}"
+                            class="nav-link rounded-3 px-2 {{ request()->is('prestasi*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
+                            Prestasi
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('berita.index') }}" class="nav-link text-white">
-                        Berita
+                        <a href="{{ route('berita.index') }}"
+                            class="nav-link rounded-3 px-2 {{ request()->is('berita*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
+                            Berita
                         </a>
                     </li>
 
@@ -148,8 +156,8 @@
 
         <li class="nav-item">
 
-            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-3 text-white" data-bs-toggle="collapse"
-                href="#keuanganMenu" role="button">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-3 {{ $keuanganActive ? 'active bg-white text-success fw-semibold' : 'text-white' }}"
+                data-bs-toggle="collapse" href="#keuanganMenu" role="button">
 
                 <i class="bi bi-wallet2 me-3 icon"></i>
 
@@ -161,37 +169,34 @@
 
             </a>
 
-            <div class="collapse
-        {{ request()->is('keuangan*') ||
-        request()->is('jenis-pembayaran*') ||
-        request()->is('transaksi-pembayaran*') ||
-        request()->is('pengeluaran*')
-            ? 'show'
-            : '' }}"
-                id="keuanganMenu">
+            <div class="collapse {{ $keuanganActive ? 'show' : '' }}" id="keuanganMenu">
 
                 <ul class="nav flex-column ms-4 mt-2">
 
                     <li class="nav-item">
-                        <a href="{{ route('keuangan.index') }}" class="nav-link text-white">
+                        <a href="{{ route('keuangan.index') }}"
+                            class="nav-link rounded-3 px-2 {{ request()->is('keuangan*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
                             Dashboard Keuangan
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('jenis-pembayaran.index') }}" class="nav-link text-white">
+                        <a href="{{ route('jenis-pembayaran.index') }}"
+                            class="nav-link rounded-3 px-2 {{ request()->is('jenis-pembayaran*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
                             Jenis Pembayaran
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('transaksi-pembayaran.index') }}" class="nav-link text-white">
+                        <a href="{{ route('transaksi-pembayaran.index') }}"
+                            class="nav-link rounded-3 px-2 {{ request()->is('transaksi-pembayaran*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
                             Transaksi Pembayaran
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('pengeluaran.index') }}" class="nav-link text-white">
+                        <a href="{{ route('pengeluaran.index') }}"
+                            class="nav-link rounded-3 px-2 {{ request()->is('pengeluaran*') ? 'active bg-white text-success fw-semibold' : 'text-white' }}">
                             Pengeluaran
                         </a>
                     </li>
@@ -214,8 +219,8 @@
     </ul>
 
     <!-- User -->
-    <div class="pt-3 border-top border-light border-opacity-25 d-flex align-items-center">
-        <div class="bg-white text-success rounded-circle d-flex justify-content-center align-items-center me-2"
+    <div class="pt-3 border-top border-light border-opacity-25 d-flex align-items-center sidebar-footer">
+        <div class="bg-white text-success rounded-circle d-flex justify-content-center align-items-center me-2 avatar"
             style="width:35px;height:35px;">
             <i class="bi bi-person"></i>
         </div>

@@ -50,7 +50,7 @@ class BeritaController extends Controller
 
             'isi' => 'required',
 
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:8192'
 
         ]);
 
@@ -94,7 +94,7 @@ class BeritaController extends Controller
      */
     public function show(Berita $berita)
     {
-        //
+        return view('pages.detailberita', compact('berita'));
     }
 
     /**
@@ -121,7 +121,7 @@ class BeritaController extends Controller
 
             'isi' => 'required',
 
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:8192'
 
         ]);
 
